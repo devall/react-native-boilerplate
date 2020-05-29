@@ -15,7 +15,6 @@ const HomeContainer = () => {
   return (
     <View style={[appStyles.flex, appStyles.center]}>
       <Text style={styles.title}>{t('hello')}</Text>
-
       <TouchableOpacity onPress={setLanguage}>
         <Text>{t('change')}</Text>
       </TouchableOpacity>
