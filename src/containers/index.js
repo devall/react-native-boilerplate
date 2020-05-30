@@ -1,3 +1,4 @@
-import HomeContainer from './Home';
+import PhotoSelectContainer from './PhotoSelect';
+import PhotoFilter from './PhotoFilter';
 
-export { HomeContainer };
+export { PhotoSelectContainer, PhotoFilter };
