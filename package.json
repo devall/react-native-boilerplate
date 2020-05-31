@@ -56,9 +56,7 @@
     "react-test-renderer": "16.11.0"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "./src/*.{js,jsx,ts,tsx}": [

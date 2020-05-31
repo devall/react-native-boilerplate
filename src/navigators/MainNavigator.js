@@ -6,7 +6,7 @@ import { PhotoSelectContainer, PhotoFilter } from '../containers';
 const MainStack = createStackNavigator();
 
 const MainNavigator = () => {
-  const defaultOptions = {};
+  const defaultOptions = { headerBackTitleVisible: false };
 
   return (
     <MainStack.Navigator
@@ -19,7 +19,7 @@ const MainNavigator = () => {
       />
       <MainStack.Screen
         name="PhotoFilter"
-        options={{ headerTransparent: true }}
+        options={defaultOptions}
         component={PhotoFilter}
       />
     </MainStack.Navigator>
