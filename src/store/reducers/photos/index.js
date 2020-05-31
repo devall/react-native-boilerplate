@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-
-import test from './test';
-import photos from './photos';
+import all from './all';
+import filtered from './filtered';
 
 export default combineReducers({
-  test,
-  photos,
+  all,
+  filtered,
 });

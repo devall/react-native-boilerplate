@@ -6,6 +6,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 const { width } = Dimensions.get('screen');
 
@@ -21,6 +22,16 @@ const PhotoListItem = ({ photo, onSelect, selected }) => {
       </TouchableOpacity>
     </View>
   );
+};
+
+PhotoListItem.defaultProps = {
+  photo: {},
+};
+
+PhotoListItem.propTypes = {
+  photo: PropTypes.object,
+  onSelect: PropTypes.func.isRequired,
+  selected: PropTypes.bool.isRequired,
 };
 
 const styles = StyleSheet.create({

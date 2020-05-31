@@ -1,16 +1,13 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import PhotoListItem from './PhotoListItem';
+import { useSelector, useDispatch } from 'react-redux';
+import { photos as photoActions } from '../../store/actions';
 
-const PhotoList = ({ items }) => {
-  const [selectedPhotos, setSelectedPhotos] = React.useState([]);
-  const [photos, setPhotos] = React.useState([]);
-
-  React.useEffect(() => {
-    if (items.length) {
-      setPhotos(items);
-    }
-  }, [items]);
+const PhotoList = () => {
+  const dispatch = useDispatch();
+  const photos = useSelector((state) => state.photos.all.byId);
+  const selectedPhotos = useSelector((state) => state.photos.all.selectedIds);
 
   const renderItem = ({ item }) => {
     return (
@@ -24,10 +21,9 @@ const PhotoList = ({ items }) => {
 
   const handleSelect = (id) => {
     if (selectedPhotos.includes(id)) {
-      const result = selectedPhotos.filter((item) => item !== id);
-      setSelectedPhotos(result);
+      dispatch(photoActions.all.deselectPhoto(id));
     } else {
-      setSelectedPhotos([...selectedPhotos, id]);
+      dispatch(photoActions.all.selectPhoto(id));
     }
   };
 

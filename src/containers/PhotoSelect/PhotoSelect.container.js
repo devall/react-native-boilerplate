@@ -1,29 +1,19 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import CameraRoll from '@react-native-community/cameraroll';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 
 import appStyles from '../../theme/appStyles';
 import { PhotoList, Button } from '../../components';
-import { useNavigation } from '@react-navigation/native';
-
-const options = {
-  first: 20,
-  assetType: 'Photos',
-};
+import { photos } from '../../store/actions';
 
 const PhotoSelectContainer = () => {
-  const [photos, setPhotos] = React.useState([]);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    fetchPhotos();
+    dispatch(photos.all.fetchPhotos());
   }, []);
-
-  const fetchPhotos = async () => {
-    const { edges } = await CameraRoll.getPhotos(options);
-
-    setPhotos(edges);
-  };
 
   const handleContinue = () => {
     navigation.navigate('PhotoFilter');
@@ -31,7 +21,7 @@ const PhotoSelectContainer = () => {
 
   return (
     <View style={[appStyles.flex]}>
-      <PhotoList items={photos} />
+      <PhotoList />
       <Button onPress={handleContinue}>
         <Text style={styles.buttonLabel}>Продолжить</Text>
       </Button>
