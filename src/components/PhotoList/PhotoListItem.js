@@ -10,13 +10,13 @@ import PropTypes from 'prop-types';
 
 const { width } = Dimensions.get('screen');
 
-const PhotoListItem = ({ photo, onSelect, selected }) => {
-  const { uri } = photo.node.image;
+const PhotoListItem = ({ photo, onSelect, selected, id }) => {
+  const { uri } = photo.image;
 
   return (
     <View style={selected ? styles.active : null}>
       <TouchableOpacity
-        onPress={() => onSelect(photo.node.timestamp)}
+        onPress={() => onSelect(id)}
         style={styles.selectedContainer}>
         <Image style={styles.image} source={{ uri }} />
       </TouchableOpacity>

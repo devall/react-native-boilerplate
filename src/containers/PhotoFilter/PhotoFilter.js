@@ -2,38 +2,46 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getSelectedPhotos } from '../../store/selectors/photos';
+import { selectFiltered } from '../../store/selectors/photos';
 import { SelectedPreviewList, PhotoCard } from '../../components';
 import { photos as photoActions } from '../../store/actions';
 
 const PhotoFilter = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const selectedPhotos = useSelector(getSelectedPhotos);
+  const filteredPhotos = useSelector(selectFiltered);
+  const [currentPair] = filteredPhotos;
   const dispatch = useDispatch();
 
   const handleLike = () => {
-    //add custom logic
-    if (selectedPhotos.length > 1) {
-      const index = (selectedIndex + 1) % selectedPhotos.length;
-
-      setSelectedIndex(index);
+    if (currentPair.length > 1) {
+      const id = currentPair[selectedIndex ? 0 : 1].timestamp;
+      dispatch(photoActions.all.removeFromFiltered(id));
     }
   };
 
   const handleDislike = () => {
-    if (selectedPhotos.length > 1) {
-      const id = selectedPhotos[selectedIndex].node.timestamp;
-      const index = selectedIndex ? selectedIndex - 1 : selectedIndex;
-
-      setSelectedIndex(index);
-      dispatch(photoActions.all.deselectPhoto(id));
+    if (currentPair.length > 1) {
+      const id = currentPair[selectedIndex].timestamp;
+      dispatch(photoActions.all.removeFromFiltered(id));
     }
+  };
+
+  const handleTap = () => {
+    const index = (selectedIndex + 1) % currentPair.length;
+    setSelectedIndex(index);
   };
 
   return (
     <View style={styles.container}>
-      <SelectedPreviewList items={selectedPhotos} />
-      <PhotoCard item={selectedPhotos[selectedIndex]} style={styles.card} />
+      <SelectedPreviewList
+        activeIndex={filteredPhotos.indexOf(currentPair)}
+        items={filteredPhotos}
+      />
+      <PhotoCard
+        item={currentPair[selectedIndex]}
+        onTap={handleTap}
+        style={styles.card}
+      />
       <View style={styles.footer}>
         <TouchableOpacity onPress={handleDislike} style={styles.likeButton}>
           <Text>DISLIKE</Text>

@@ -1,25 +1,33 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import PhotoListItem from './PhotoListItem';
 import { useSelector, useDispatch } from 'react-redux';
+
+import PhotoListItem from './PhotoListItem';
 import { photos as photoActions } from '../../store/actions';
+import {
+  selectSelectedPhotoIds,
+  selectPhotos,
+} from '../../store/selectors/photos';
 
 const PhotoList = () => {
+  const photos = useSelector(selectPhotos);
+  const selectedPhotos = useSelector(selectSelectedPhotoIds);
   const dispatch = useDispatch();
-  const photos = useSelector((state) => state.photos.all.byId);
-  const selectedPhotos = useSelector((state) => state.photos.all.selectedIds);
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item: key }) => {
+    const photo = photos[key];
+
     return (
       <PhotoListItem
-        selected={selectedPhotos.includes(item.node.timestamp)}
+        selected={selectedPhotos.includes(key)}
         onSelect={handleSelect}
-        photo={item}
+        photo={photo}
+        id={key}
       />
     );
   };
 
-  const handleSelect = (id) => {
+  const handleSelect = id => {
     if (selectedPhotos.includes(id)) {
       dispatch(photoActions.all.deselectPhoto(id));
     } else {
@@ -31,9 +39,9 @@ const PhotoList = () => {
     <FlatList
       showsVerticalScrollIndicator
       scrollEnabled
-      data={photos}
+      data={Object.keys(photos)}
       renderItem={renderItem}
-      keyExtractor={(item) => item.node.timestamp}
+      keyExtractor={item => item}
       numColumns={3}
     />
   );

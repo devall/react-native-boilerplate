@@ -1,11 +1,12 @@
 import { createSelector } from 'reselect';
 
-const getSelectedPhotos = createSelector(
-  (state) => state.photos.all,
-  (allPhotos) =>
-    allPhotos.byId.filter((photo) =>
-      allPhotos.selectedIds.includes(photo.node.timestamp),
-    ),
-);
+export const selectFiltered = state => state.photos.all.filtered;
+export const selectPhotos = state => state.photos.all.byId;
+export const selectPhotoIds = state => state.photos.all.allIds;
+export const selectSelectedPhotoIds = state => state.photos.all.selectedIds;
 
-export { getSelectedPhotos };
+export const getSelectedPhotos = createSelector(
+  selectPhotos,
+  selectSelectedPhotoIds,
+  (photos, ids) => ids.map(id => photos[id]),
+);
