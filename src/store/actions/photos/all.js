@@ -6,6 +6,7 @@ export const types = {
   DESELECT_PHOTO: 'photos/all/DESELECT_PHOTO',
   GROUP_PHOTOS: 'photos/all/GROUP_PHOTOS',
   REMOVE_FILTERED: 'photos/all/REMOVE_FILTERED',
+  SET_SELECTED_INDEX: 'photos/all/SET_SELECTED_INDEX',
 };
 
 export const fetchPhotos = () => async dispatch => {
@@ -29,4 +30,8 @@ export const deselectPhoto = id => dispatch => {
 
 export const removeFromFiltered = id => dispatch => {
   dispatch({ type: types.REMOVE_FILTERED, payload: id });
+};
+
+export const setSelectedIndex = index => dispatch => {
+  dispatch({ type: types.SET_SELECTED_INDEX, payload: index });
 };

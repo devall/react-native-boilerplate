@@ -7,6 +7,7 @@ const initState = {
   allIds: [],
   selectedIds: [],
   filtered: [],
+  selectedIndex: 0,
 };
 
 export default reducer(initState, {
@@ -66,6 +67,12 @@ export default reducer(initState, {
     return {
       ...state,
       filtered,
+    };
+  },
+  [types.SET_SELECTED_INDEX]: (state, action) => {
+    return {
+      ...state,
+      selectedIndex: action.payload,
     };
   },
 });

@@ -4,6 +4,7 @@ export const selectFiltered = state => state.photos.all.filtered;
 export const selectPhotos = state => state.photos.all.byId;
 export const selectPhotoIds = state => state.photos.all.allIds;
 export const selectSelectedPhotoIds = state => state.photos.all.selectedIds;
+export const selectCurrentIndex = state => state.photos.all.selectedIndex;
 
 export const getSelectedPhotos = createSelector(
   selectPhotos,

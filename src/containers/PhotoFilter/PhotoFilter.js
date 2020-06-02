@@ -2,12 +2,16 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectFiltered, getCurrentPair } from '../../store/selectors/photos';
+import {
+  selectFiltered,
+  getCurrentPair,
+  selectCurrentIndex,
+} from '../../store/selectors/photos';
 import { SelectedPreviewList, PhotoCard } from '../../components';
 import { photos as photoActions } from '../../store/actions';
 
 const PhotoFilter = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const selectedIndex = useSelector(selectCurrentIndex);
   const filteredPhotos = useSelector(selectFiltered);
   const currentPair = useSelector(getCurrentPair);
   const dispatch = useDispatch();
@@ -28,7 +32,7 @@ const PhotoFilter = () => {
 
   const handleTap = () => {
     const index = (selectedIndex + 1) % currentPair.length;
-    setSelectedIndex(index);
+    dispatch(photoActions.all.setSelectedIndex(index));
   };
 
   return (
