@@ -2,14 +2,14 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectFiltered } from '../../store/selectors/photos';
+import { selectFiltered, getCurrentPair } from '../../store/selectors/photos';
 import { SelectedPreviewList, PhotoCard } from '../../components';
 import { photos as photoActions } from '../../store/actions';
 
 const PhotoFilter = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const filteredPhotos = useSelector(selectFiltered);
-  const [currentPair] = filteredPhotos;
+  const currentPair = useSelector(getCurrentPair);
   const dispatch = useDispatch();
 
   const handleLike = () => {
@@ -34,8 +34,8 @@ const PhotoFilter = () => {
   return (
     <View style={styles.container}>
       <SelectedPreviewList
-        activeIndex={filteredPhotos.indexOf(currentPair)}
         items={filteredPhotos}
+        activeIndex={filteredPhotos.indexOf(currentPair)}
       />
       <PhotoCard
         item={currentPair[selectedIndex]}

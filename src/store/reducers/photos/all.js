@@ -53,10 +53,15 @@ export default reducer(initState, {
   },
   [types.REMOVE_FILTERED]: (state, action) => {
     const id = action.payload;
-    const flatten = _.flatten(state.filtered)
-      .filter(item => item.timestamp !== id)
-      .reverse();
-    const filtered = _.chunk(flatten, 2);
+    let filtered = state.filtered.map(pair =>
+      pair.filter(item => item.timestamp !== id),
+    );
+    let shouldChunk =
+      filtered.length > 1 && !filtered.some(pair => pair.length > 1);
+
+    if (shouldChunk) {
+      filtered = _.chunk(_.flatten(filtered), 2);
+    }
 
     return {
       ...state,

@@ -10,3 +10,11 @@ export const getSelectedPhotos = createSelector(
   selectSelectedPhotoIds,
   (photos, ids) => ids.map(id => photos[id]),
 );
+
+export const getCurrentPair = createSelector(selectFiltered, filtered => {
+  const [pair] = filtered.filter(pair => pair.length > 1);
+  if (pair) {
+    return pair;
+  }
+  return filtered[0];
+});

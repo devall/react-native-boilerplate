@@ -2,21 +2,42 @@ import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import SelectedPreviewListItem from './SelectedPreviewListItem';
 
-const SelectedPreviewList = ({ items }) => {
-  const renderPair = (pair, index) => {
-    return pair.map(item => (
+const SelectedPreviewList = ({ items, activeIndex }) => {
+  const renderPairs = (pair, index) => {
+    if (pair.length > 1) {
+      return renderPair(pair, index);
+    }
+    return renderItem(pair[0]);
+  };
+
+  const renderItem = item => {
+    return (
       <SelectedPreviewListItem
-        highlighted={!index}
+        highlighted={items.length < 2}
         key={item.timestamp}
         item={item}
       />
-    ));
+    );
+  };
+
+  const renderPair = (pair, index) => {
+    return (
+      <View key={index} style={{ paddingHorizontal: 5, flexDirection: 'row' }}>
+        {pair.map(item => (
+          <SelectedPreviewListItem
+            highlighted={activeIndex === index}
+            key={item.timestamp}
+            item={item}
+          />
+        ))}
+      </View>
+    );
   };
 
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer} horizontal>
-        {items.map((pair, index) => renderPair(pair, index))}
+        {items.map(renderPairs)}
       </ScrollView>
     </View>
   );
