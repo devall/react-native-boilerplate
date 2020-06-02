@@ -1,8 +1,9 @@
 import React from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 
-import MainNavigator from './MainNavigator';
 import { SplashContainer } from '../containers';
+import MainNavigator from './MainNavigator';
 
 const RootNavigator = () => {
   const isLoggedIn = true;
