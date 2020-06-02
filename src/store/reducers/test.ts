@@ -7,10 +7,8 @@ const initState = {
 };
 
 export default reducer(initState, {
-  ['INIT']: (state) => {
-    return {
-      ...state,
-      data: [1],
-    };
-  },
+  INIT: (state) => ({
+    ...state,
+    data: [1],
+  }),
 });
