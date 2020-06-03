@@ -1,0 +1,15 @@
+{
+  "processors": [
+    "stylelint-processor-styled-components"
+  ],
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-styled-components",
+    "stylelint-config-rational-order"
+  ],
+  "rules": {
+    "plugin/rational-order": [true, {
+      "empty-line-between-groups": true
+    }]
+  }
+}
