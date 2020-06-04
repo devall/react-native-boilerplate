@@ -8,9 +8,11 @@ import styled from 'styled-components/native';
 import { Button } from '@components/common';
 import { PhotoList } from '@components/screens/PhotoSelect';
 import { photos } from '@store/actions';
-import appStyles from '@theme/appStyles';
+
+import { styles } from '../../styles';
 
 const ButtonText = styled.Text`
+  ${styles.heading.h1}
   color: white;
 `;
 

@@ -22,7 +22,7 @@ module.exports = {
           ['^\\u0000'], // bare imports
           ['^react'], // react
           ['^[^\\.]'], // non-local imports
-          ['^@navigators|^@screens|^@components|^@store|^@utils|^@theme'], // internal
+          ['^@navigators|^@screens|^@components|^@store|^@utils|^@styles'], // internal
           ['^\\.'], // local imports
         ],
       },

@@ -7,9 +7,9 @@ import { ThemeProvider } from 'styled-components';
 
 import RootNavigator from '@navigators/RootNavigator';
 import configureStore from '@store/configureStore';
-import theme from '@theme/default';
 
 import { config, i18next } from './i18n';
+import { themes } from './styles';
 
 const { store, persistor } = configureStore();
 
@@ -17,9 +17,9 @@ i18next.init(config);
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <PersistGate loading={null} persistor={persistor}>
+    <Provider {...{ store }}>
+      <ThemeProvider theme={themes.defaultTheme}>
+        <PersistGate loading={null} {...{ persistor }}>
           <SafeAreaProvider>
             <RootNavigator />
           </SafeAreaProvider>
