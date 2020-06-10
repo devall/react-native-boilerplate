@@ -72,8 +72,8 @@
   },
   "lint-staged": {
     "./src/*.{js,jsx,ts,tsx}": [
-      "pretty-quick --staged && npx prettier --write",
-      "pretty-quick --staged && eslint src/*.js --fix-dry-run"
+      "pretty-quick --staged",
+      "eslint src/*.js --fix-dry-run"
     ]
   },
   "jest": {
