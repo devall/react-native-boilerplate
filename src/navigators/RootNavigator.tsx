@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 
-import { SplashContainer } from '../containers';
+import { SplashScreen} from '../screens';
 import MainNavigator from './MainNavigator';
 
 const RootNavigator = () => {

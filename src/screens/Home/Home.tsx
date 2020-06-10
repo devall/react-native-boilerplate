@@ -1,11 +1,18 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
+
+import styled from 'styled-components/native';
 
 import appStyles from '../../theme/appStyles';
 import sizes from '../../theme/fonts';
 
-const HomeContainer = () => {
+const Text = styled.Text`
+  font-size: ${sizes.h1};
+  margin-bottom: 20px;
+`;
+
+const HomeScreen = () => {
   const { t, i18n } = useTranslation();
 
   const setLanguage = () => {
@@ -22,11 +29,4 @@ const HomeContainer = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  title: {
-    fontSize: sizes.h1,
-    marginBottom: 20,
-  },
-});
-
-export default HomeContainer;
+export default HomeScreen;

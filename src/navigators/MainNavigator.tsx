@@ -2,7 +2,7 @@ import React from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { HomeContainer } from '../containers';
+import { HomeScreen } from '../screens';
 
 const MainStack = createStackNavigator();
 
@@ -11,7 +11,7 @@ const MainNavigator = () => {
 
   return (
     <MainStack.Navigator screenOptions={defaultOptions} initialRouteName="Home">
-      <MainStack.Screen name="Home" component={HomeContainer} />
+      <MainStack.Screen name="Home" component={HomeScreen} />
     </MainStack.Navigator>
   );
 };

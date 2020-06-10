@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "postinstall": "npm run pod-install",
+    "start": "npx react-native start",
     "android": "cd android && ./gradlew clean && cd .. && npx react-native run-android",
     "ios": "npx react-native run-ios",
-    "start": "npx react-native start",
     "test": "jest",
-    "lint": "eslint src/",
-    "lint:fix": "eslint src/ --fix",
+    "lint": "eslint src/ --ext js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint src/ --ext js,.jsx,.ts,.tsx --fix",
     "pod-install": "npx pod-install ios"
   },
   "dependencies": {
@@ -73,7 +74,7 @@
   "lint-staged": {
     "./src/*.{js,jsx,ts,tsx}": [
       "pretty-quick --staged",
-      "eslint src/*.js --fix-dry-run"
+      "eslint src/ --ext js,.jsx,.ts,.tsx --fix"
     ]
   },
   "jest": {
