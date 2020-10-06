@@ -7,6 +7,11 @@ import styled from 'styled-components/native';
 import appStyles from '../../theme/appStyles';
 import sizes from '../../theme/fonts';
 
+const Title = styled.Text`
+  font-size: ${sizes.h1};
+  margin-bottom: 20px;
+`;
+
 const Text = styled.Text`
   font-size: ${sizes.h1};
   margin-bottom: 20px;
@@ -21,7 +26,7 @@ const HomeScreen = () => {
 
   return (
     <View style={[appStyles.flex, appStyles.center]}>
-      <Text style={styles.title}>{t('hello')}</Text>
+      <Title>{t('hello')}</Title>
       <TouchableOpacity onPress={setLanguage}>
         <Text>{t('change')}</Text>
       </TouchableOpacity>

@@ -1,7 +1,7 @@
 const fontSizes = {
-  h1: 20,
-  h2: 18,
-  h3: 16,
+  h1: '20px',
+  h2: '18px',
+  h3: '16px',
 };
 
 export default fontSizes;
